@@ -1,0 +1,7 @@
+{
+  "admin-settings": "https://functions.poehali.dev/7ea89590-1071-4b1f-8f45-85ccdaeda481",
+  "admin-consultations": "https://functions.poehali.dev/69f7b77d-7424-4508-93d6-4846848bc5d3",
+  "admin-blog": "https://functions.poehali.dev/a4758d4d-3570-44e4-aa8e-fa06f86d06fe",
+  "consultation-submit": "https://functions.poehali.dev/910f9658-f98c-417e-bb2f-f93a5b09419e",
+  "admin-auth": "https://functions.poehali.dev/8e42cde9-7251-45ab-9e81-f519f6a4962a"
+}

@@ -1,0 +1,13 @@
+{
+  "tests": [
+    {
+      "name": "Submit consultation",
+      "method": "POST",
+      "path": "/",
+      "body": {"name": "Тест", "phone": "+79001234567", "interest": "pistols", "message": "Тестовая заявка"},
+      "expectedStatus": 200,
+      "expectedBody": {"ok": true},
+      "bodyMatcher": "partial"
+    }
+  ]
+}

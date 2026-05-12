@@ -1,4 +1,7 @@
 import { useState } from "react";
+import func2url from "../../backend/func2url.json";
+
+const SUBMIT_URL = (func2url as Record<string, string>)["consultation-submit"];
 
 export default function ConsultationForm() {
   const [form, setForm] = useState({
@@ -8,13 +11,21 @@ export default function ConsultationForm() {
     message: "",
   });
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true);
+    await fetch(SUBMIT_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(form),
+    });
+    setLoading(false);
     setSubmitted(true);
   };
 
@@ -102,9 +113,10 @@ export default function ConsultationForm() {
 
       <button
         type="submit"
-        className="w-full border border-gold text-gold font-montserrat text-[11px] tracking-[0.3em] uppercase py-4 hover:bg-gold hover:text-[#0e0b08] transition-all duration-300"
+        disabled={loading}
+        className="w-full border border-gold text-gold font-montserrat text-[11px] tracking-[0.3em] uppercase py-4 hover:bg-gold hover:text-[#0e0b08] transition-all duration-300 disabled:opacity-50"
       >
-        Запросить консультацию
+        {loading ? "Отправка..." : "Запросить консультацию"}
       </button>
 
       <p className="font-montserrat text-[10px] text-cream-muted/40 text-center tracking-wide">
